@@ -6,17 +6,13 @@
   </head>
   <body style="margin: 0; overflow: hidden;">
     <a-scene embedded arjs>
-      <!-- Floating Poké Ball Appears in Front of Camera  -->
-      <a-entity position="0 1.5 -2">
-        <a-entity geometry="primitive: sphere; radius: 0.2" material="shader: html; target: #sketchfab-iframe"></a-entity>
+      <!-- Floating Poké Ball Appears in Front of Camera Without a Marker -->
+      <a-entity position="0 1.5 -2" scale="0.5 0.5 0.5" 
+                gltf-model= "scene.gltf"
+                animation="property: rotation; to: 0 360 0; loop: true; dur: 4000">
       </a-entity>
       <a-camera-static />
     </a-scene>
-    
-    <!-- Sketchfab Embedded Model -->
-    <div class="sketchfab-embed-wrapper" style="display: none;">
-      <iframe id="sketchfab-iframe" title="Poké Ball - Pokemon Pokeball" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/c266163bd310411bac727783e4c79c4a/embed">
-      </iframe>
-    </div>
   </body>
 </html>
+
