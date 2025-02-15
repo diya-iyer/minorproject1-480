@@ -5,14 +5,20 @@
     <script src="https://cdn.jsdelivr.net/npm/ar.js@1.7.2"></script>
   </head>
   <body style="margin: 0; overflow: hidden;">
-    <a-scene embedded arjs>
-      <!-- Floating Poké Ball Appears in Front of Camera Without a Marker -->
-      <a-entity position="0 1.5 -2" scale="0.5 0.5 0.5" 
-                gltf-model= "https://diya-iyer.github.io/minorproject1-480/poke-ball.glb"
-                animation="property: rotation; to: 0 360 0; loop: true; dur: 4000">
+    <a-scene embedded arjs="sourceType: webcam;">
+      <!-- Debugging Text -->
+      <a-text id="debugText" value="Loading Model..." position="-1 2 -3" color="red"></a-text>
+
+      <!-- Floating Poké Ball -->
+      <a-entity position="0 1.5 -2" scale="0.5 0.5 0.5"
+                gltf-model="https://diya-iyer.github.io/minorproject1-480/poke-ball.glb"
+                animation="property: rotation; to: 0 360 0; loop: true; dur: 4000"
+                event-set__loaded="_event: model-loaded; _target: #debugText; value: 'Model Loaded!'; color: green">
       </a-entity>
-      <a-camera-static />
+
+      <a-camera-static></a-camera-static>
     </a-scene>
   </body>
 </html>
+
 
