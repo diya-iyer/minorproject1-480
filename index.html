@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/ar.js@1.7.2"></script>
+  </head>
+  <body style="margin: 0; overflow: hidden;">
+    <a-scene embedded arjs>
+      <!-- Floating Poké Ball Appears in Front of Camera  -->
+      <a-entity position="0 1.5 -2">
+        <a-entity geometry="primitive: sphere; radius: 0.2" material="shader: html; target: #sketchfab-iframe"></a-entity>
+      </a-entity>
+      <a-camera-static />
+    </a-scene>
+    
+    <!-- Sketchfab Embedded Model -->
+    <div class="sketchfab-embed-wrapper" style="display: none;">
+      <iframe id="sketchfab-iframe" title="Poké Ball - Pokemon Pokeball" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/c266163bd310411bac727783e4c79c4a/embed">
+      </iframe>
+    </div>
+  </body>
+</html>
