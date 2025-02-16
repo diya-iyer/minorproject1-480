@@ -6,20 +6,36 @@
     <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@7.5.2/dist/aframe-extras.min.js"></script>
   </head>
   <body style="margin: 0; overflow: hidden;">
-    <a-scene embedded arjs="sourceType: webcam; debugUIEnabled: false; trackingMethod: best;" renderer="logarithmicDepthBuffer: true;" vr-mode-ui="enabled: false;">
+    <a-scene embedded arjs="sourceType: webcam; debugUIEnabled: false; trackingMethod: best;" 
+             renderer="logarithmicDepthBuffer: true;" vr-mode-ui="enabled: false;">
+      
       <!-- Floating Poké Ball -->
-      <a-entity position="0 0 -1">
-        <a-entity 
-            scale="0.3 0.3 0.3"
-            rotation="0 0 0"
-            gltf-model="https://diya-iyer.github.io/minorproject1-480/pokeball.glb"
-            animation="property: rotation; to: 0 360 0; loop: true; dur: 4000">
-        </a-entity>
-    </a-entity>
+      <a-entity id="pokeball" position="0 0 -1" scale="0.2 0.2 0.2"
+                gltf-model="https://diya-iyer.github.io/minorproject1-480/pokeball.glb"
+                animation="property: rotation; to: 0 360 0; loop: true; dur: 4000"
+                gesture-handler>
+      </a-entity>
 
       <a-camera-static></a-camera-static>
     </a-scene>
+
+    <script>
+      AFRAME.registerComponent("gesture-handler", {
+        init: function () {
+          this.el.addEventListener("click", () => {
+            this.el.setAttribute("animation__throw", {
+              property: "position",
+              to: "0 0 -5",  // Moves forward
+              dur: 1000,     // Duration: 1s
+              easing: "easeOutQuad"
+            });
+          });
+        }
+      });
+    </script>
+
   </body>
 </html>
+
 
 
