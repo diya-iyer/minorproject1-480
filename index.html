@@ -23,6 +23,7 @@
       AFRAME.registerComponent("gesture-handler", {
         init: function () {
           this.el.addEventListener("click", () => {
+            console.log("clicked")
             this.el.setAttribute("animation__throw", {
               property: "position",
               to: "0 0 -5",  // Moves forward
