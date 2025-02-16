@@ -1,40 +1,55 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <script src="https://aframe.io/releases/1.4.1/aframe.min.js"></script>
-    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@7.5.2/dist/aframe-extras.min.js"></script>
-  </head>
-  <body style="margin: 0; overflow: hidden;">
-    <a-scene embedded arjs="sourceType: webcam; debugUIEnabled: false; trackingMethod: best;" 
-             renderer="logarithmicDepthBuffer: true;" vr-mode-ui="enabled: false;">
-      
-      <!-- Floating Poké Ball -->
-      <a-entity id="pokeball" position="0 0 -1" scale="0.2 0.2 0.2"
-                gltf-model="https://diya-iyer.github.io/minorproject1-480/pokeball.glb"
-                animation="property: rotation; to: 0 360 0; loop: true; dur: 4000"
-                gesture-handler>
-      </a-entity>
-
-      <a-camera-static></a-camera-static>
-    </a-scene>
-
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Poké Ball AR</title>
+    <!-- A-Frame -->
+    <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
+    <!-- AR.js A-Frame components -->
+    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
     <script>
-      AFRAME.registerComponent("gesture-handler", {
+      // Custom component to detect clicks and "throw" the Poké Ball
+      AFRAME.registerComponent("throwable", {
         init: function () {
           this.el.addEventListener("click", () => {
-            console.log("clicked")
+            console.log("Poké Ball clicked!"); // Debugging output
             this.el.setAttribute("animation__throw", {
               property: "position",
-              to: "0 0 -5",  // Moves forward
-              dur: 1000,     // Duration: 1s
+              to: "0 1 -5",  // Moves forward and slightly upward
+              dur: 1000,     // 1 second duration
               easing: "easeOutQuad"
             });
           });
-        }
+        },
       });
     </script>
+  </head>
+  <body style="margin: 0; overflow: hidden;">
+    <!-- AR Scene -->
+    <a-scene
+      embedded
+      arjs="sourceType: webcam; debugUIEnabled: false; trackingMethod: best;"
+      renderer="logarithmicDepthBuffer: true;"
+      vr-mode-ui="enabled: false"
+    >
+      <!-- Add a cursor and raycaster to detect clicks -->
+      <a-entity camera position="0 0 0">
+        <a-cursor></a-cursor>
+        <a-entity raycaster="objects: .clickable"></a-entity>
+      </a-entity>
 
+      <!-- Floating Poké Ball -->
+      <a-entity
+        class="clickable"  
+        position="0 0 -1"
+        scale="0.2 0.2 0.2"
+        rotation="0 0 0"
+        gltf-model="https://diya-iyer.github.io/minorproject1-480/pokeball.glb"
+        animation="property: rotation; to: 0 360 0; loop: true; dur: 4000"
+        throwable
+      ></a-entity>
+    </a-scene>
   </body>
 </html>
 
